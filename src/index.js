@@ -1,13 +1,12 @@
 import store from './redux/store';
+import { setTimeout } from 'timers';
 
 const itemListDOM = $('#itemList');
 const itemDOM = $('#item');
 const inputNuevaNotaDOM = $('#txtNuevaNota');
 
 inputNuevaNotaDOM.keyup((e)=>{
-    console.log('keyup')
     if(e.keyCode === 13) {
-        console.log('enter')
         store.dispatch({
             type: 'AGREGAR',
             payload: {
@@ -55,4 +54,12 @@ function actualizarLista(items) {
 store.subscribe(()=> {
     const state = store.getState();
     actualizarLista(state);
+});
+
+const actions = JSON.parse(localStorage.getItem('actions') || '[]');
+// console.log(actions);
+actions.forEach((action, i) => {
+    setTimeout(() => {
+        store.dispatch(action);
+    }, i * 1000);
 });
