@@ -1,5 +1,5 @@
 let id = 0;
-function reducer(state=[], action){
+function reducer(state = [], action){
     switch (action.type) {
         case 'AGREGAR':
             id++;
@@ -26,7 +26,7 @@ function reducer(state=[], action){
             ]
             break;
         default:
-            break;
+            return state;
     }
 }
 

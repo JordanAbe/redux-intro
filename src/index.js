@@ -53,13 +53,15 @@ function actualizarLista(items) {
 
 store.subscribe(()=> {
     const state = store.getState();
-    actualizarLista(state);
+    actualizarLista(state.tareas);
 });
 
 const actions = JSON.parse(localStorage.getItem('actions') || '[]');
-// console.log(actions);
-actions.forEach((action, i) => {
-    setTimeout(() => {
-        store.dispatch(action);
-    }, i * 1000);
-});
+console.log(actions);
+// actions.forEach((action, i) => {
+//     setTimeout(() => {
+//         store.dispatch(action);
+//     }, i * 1000);
+// });
+const state = store.getState();
+console.log(state);
